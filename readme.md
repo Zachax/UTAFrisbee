@@ -2,6 +2,8 @@ Fork of Frisbee Visualizer 2018
 =======================
 This fork is for developing the next iteration of Frisbee Visualizer with a new project group.
 
+17.2.2018:
+* Added music and sound effect handling scripts
 
 -----------------Original readme -----------------
 

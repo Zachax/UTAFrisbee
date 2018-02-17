@@ -217,6 +217,9 @@ public class ModeHandler : MonoBehaviour {
     // Simulates the frisbee with empirically based model in the z and y-axis, and simple constant velocity on the x-axis
     void simulateFrisbee()
     {
+		// Play sound effect when simulation starts
+		FindObjectOfType<SfxPlayer>().PlayGo ();
+
         FrisbeeLocation cutoff = null;
         int cutoffIndex = 0;
 
