@@ -32,6 +32,9 @@ public class CollisionHandler : MonoBehaviour {
         //Goal_Hitbox_MetalChains as the activator;
         if (collisionDetails.gameObject.name == "Goal_Hitbox_MetalChains")
         {
+
+			// Plays a sound of impact. Tempoarily this is not metallic.
+			FindObjectOfType<SfxPlayer>().Play("FrisbeeHitsNormal");
             Debug.Log("Metallic cling!!");
         }
 
