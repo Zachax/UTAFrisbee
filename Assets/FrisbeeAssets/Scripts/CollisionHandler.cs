@@ -9,13 +9,18 @@ using System.Collections;
  */
 
 public class CollisionHandler : MonoBehaviour {
+    GameObject place;
+
+    private void Start() {
+        place = GameObject.Find("ThrowPlace");
+    }
 
     // Checks for collision event (ie. hitting something)
     //collisionDetails = the target that was hit by this object ?
     void OnCollisionEnter(Collision collisionDetails) {
-      
+        place.GetComponent<ThrowPlaceController>().MoveThrowPlace();
         //Debug.Log("Frisbee hit something" + collisionDetails.collider);
-       
+
         if (collisionDetails.gameObject.name == "Target")
         {
             Destroy(collisionDetails.gameObject);
