@@ -21,6 +21,9 @@ public class ThrowPlaceController : MonoBehaviour {
     public void MoveThrowPlace()
     {
         place.destination = frisbee.transform.position;
+        // Give the new position to ThrowController class
+        ThrowController.throwStartPos = place.destination;
+
     }
 
     public void ResetThrowPlace()

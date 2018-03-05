@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Threshold {
-	public float throwing, holding, ending, glitch, throwStartZ;
+public class Threshold
+{
+    public float throwing, holding, ending, glitch, throwStartZ;
     //recommended values are 0.3, 0.2, 1.2, 10, -0.5
 }
 
@@ -16,6 +17,9 @@ public class Threshold {
  * ModeHandler switches mode depending on the state of ThrowController (throwMode)
  */
 public class ThrowController : MonoBehaviour {
+    
+    // Position for starting the throw
+    public static Vector3 throwStartPos;
 
     //Suggested values: backtracking=1.5s, throwDetection=0.5s
     //Everything runs at Unity variable framerate
@@ -46,8 +50,10 @@ public class ThrowController : MonoBehaviour {
 
 	private static int throwMode; //0 = playback , 1 = waiting for throw + playback , 2 = throw
 
-	// position that throw started
-    Vector3 throwStartPos;
+    // Player analog for throw start location
+    private GameObject ThrowPlace;
+    
+
     // start times
     float throwStartTime;
     float scriptStartTime;
@@ -58,6 +64,8 @@ public class ThrowController : MonoBehaviour {
     //Double-ended queue implementation from 
     private Deque<FrisbeeLocation> captureBuffer = new Deque<FrisbeeLocation>(BUFFERCAPACITY);
     private List<FrisbeeLocation> throwBuffer = null;
+
+
 
     void Start ()
 	{
@@ -72,6 +80,10 @@ public class ThrowController : MonoBehaviour {
 
         //Buffer on program start
         scriptStartTime = Time.time;
+
+       // Sets start position to throwplace (player character representation in the game world)
+       throwStartPos = ThrowPlace.transform.position;
+
 
         /*NOTE: RecordingFrisbee is Useful for debugging, because we can see the position
         in the editor while running. Also, it will be more portable if other
@@ -295,6 +307,7 @@ public class ThrowController : MonoBehaviour {
                     throwBuffer[i].rotSpeed = throwBuffer[throwBuffer.Count - speedCalculationFrames - 1].rotSpeed;
                 }
             }
+
             throwMode = 0;
             nextThrow = Time.time + throwRate;
         }
