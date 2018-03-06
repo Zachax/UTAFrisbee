@@ -9,6 +9,9 @@ using System.Collections;
  */
 
 public class CollisionHandler : MonoBehaviour {
+    // Link to ThrowControlle class for updating throw start position when frisbee hits something
+    public ThrowController ThrowController;
+
     GameObject place;
 
     private void Start() {
