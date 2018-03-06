@@ -6,17 +6,22 @@ public class keyboardDebugController : MonoBehaviour
     private GameObject frisbee;
     public float moveSpeed = 3f;
     private Rigidbody rb_frisbee;
+    private bool keyboardDebug;
    
     // Use this for initialization
     void Start()
     {
         frisbee = GameObject.Find("DebugFrisbee");
         rb_frisbee = GetComponent<Rigidbody>();
+        keyboardDebug = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey("k"))
+            keyboardDebug = !keyboardDebug;
+            toggleDebugFrisbee();
 
         if (Input.GetKey("right"))
         {
@@ -63,5 +68,10 @@ public class keyboardDebugController : MonoBehaviour
             rb_frisbee.transform.position.y -= 0.5 * Time.deltaTime;
         }
         */
-    }   
+    }
+
+    void toggleDebugFrisbee()
+    {
+        frisbee.SetActive(keyboardDebug);
+    }
 }
